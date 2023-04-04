@@ -1,36 +1,3 @@
-// import React, { useState, useEffect } from "react";
-
-// function App() {
-//   const [todos, setTodos] = useState([]);
-
-//   useEffect(() => {
-//     fetch("https://dummyjson.com/todos/random")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         const randomTodos = Array.from({ length: 10 }, () => data);
-//         setTodos(randomTodos);
-//       })
-//       .catch((err) => console.error(err));
-//   }, []);
-
-//   return (
-//     <div>
-//       <h1>Random Todos</h1>
-//       <ul>
-//         {todos.map((todo) => (
-//           <li key={todo.id}>
-//             <p>{todo.todo}</p>
-//             <p>Completed: {todo.completed.toString()}</p>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export default App;
-//with this code I always get same random todo
-
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
@@ -51,9 +18,16 @@ function App() {
     fetchTodos().catch((err) => console.error(err));
   }, []);
 
+  const handleReloadClick = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="container">
       <h1>Random Todos</h1>
+      <button className="reload-button" onClick={handleReloadClick}>
+        Reload
+      </button>
       <ul className="list">
         {todos.map((todo) => (
           <li className="item" key={todo.id}>
